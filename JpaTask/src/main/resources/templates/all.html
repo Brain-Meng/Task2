@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+</head>
+    <body>
+    <div align="center">
+        <p>编号：<input type="text" id="idValue"></p>
+        <p><input type="button" value="单个查找" onclick="clickOne()"></p>
+    </div>
+
+    <div align="center" style="color: black;" hidden id="msg">
+        <table border="1">
+            <tr border="1" >
+                <td><span id="name"></span></td>
+                <td><span id="sex"></span></td>
+                <td><span id="age"></span></td>
+                <td><span id="subject"></span></td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <p align="center"><a href="addPage.html" th:href="@{'/addPage'}"><b>添加</b></a></p>
+        <table border="1" align="center" style="width: 500px;height: 10px">
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>科目</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="people: ${list}">
+                <td th:text="${people.id}"></td>
+                <td th:text="${people.people_name}"></td>
+                <td th:text="${people.people_sex}"></td>
+                <td th:text="${people.people_age}"></td>
+                <td th:text="${people.people_subject}"></td>
+                <td>
+                    <a href="updatePage.html" th:href="@{'http://localhost:8080/updatePage/'+${people.id}}">更新</a>
+                    <a href="delete.html" th:href="@{'http://localhost:8080/delete/'+${people.id}}">删除</a>
+                </td>
+            </tr>
+        </table>
+        <th></th>
+        <hr>
+    </body>
+
+    <script type="text/javascript" >
+
+        function clickOne() {
+            idval = $("#idValue").val()
+            console.log(idval)
+            console.log(typeof idval)
+            $.ajax({
+                url:"http://localhost:8080/query/"+idval,
+                type:'get',
+                success:function (data) {
+                    if(data){
+                        $("#msg").show();
+                        $("#name").html(data.people_name);
+                        $("#sex").html(data.people_sex);
+                        $("#age").html(data.people_age);
+                        $("#subject").html(data.people_subject);
+                    }else {
+                        $("#msg").hide();
+                    }
+                }
+            })
+        }
+
+    </script>
+</html>

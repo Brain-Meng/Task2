@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div style="width:800px;height:100%;margin-left:270px;">
+        <form th:action="@{/update}" th:object="${people}" method="post">
+            ID：<input  type="hidden" th:value="*{id}" readonly="readonly"><br>
+            姓名：<input type="text" th:value="*{people_name}" name="people_name" placeholder="people_name"><br>
+            性别：<input type="text" th:value="*{people_sex}" name="people_sex" placeholder="people_sex"><br>
+            年龄：<input type="text" th:value="*{people_age}" name="people_age" placeholder="people_age"><br>
+            科目：<input  type="text" th:value="*{people_subject}" name="people_subject" placeholder="people_subject"><br>
+            <p><input type="submit" value="更新"></p>
+        </form>
+    </div>
+</body>
+</html>

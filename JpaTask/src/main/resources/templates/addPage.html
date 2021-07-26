@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div align="center" style="margin-top: 200px">
+        <form action="/add" method="post">
+            <p>姓名：<input type="text" th:value="*{people_name}" name="people_name"></p>
+            <p>性别：<input type="text" th:value="*{people_sex}" name="people_sex"></p>
+            <p>年龄：<input type="text" th:value="*{people_age}" name="people_age"></p>
+            <p>科目：<input type="text" th:value="*{people_subject}" name="people_subject"></p>
+            <p><input type="submit" value="添加"></p>
+        </form>
+    </div>
+</body>
+</html>
